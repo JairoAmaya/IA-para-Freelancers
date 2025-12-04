@@ -17,11 +17,29 @@
     <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.23.5/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#FF7A00', // Tu naranja exacto
+                            dark: '#cc6200',
+                            light: '#ff9e42'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        body { background-color: #0f172a; color: #f8fafc; font-family: 'Segoe UI', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: #050505; color: #f8fafc; font-family: 'Segoe UI', sans-serif; -webkit-tap-highlight-color: transparent; }
+        
+        /* Scrollbar personalizada Naranja */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #FF7A00; border-radius: 4px; }
         
         /* Animaciones */
         @keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
@@ -34,7 +52,7 @@
             100% { transform: translate(-50%, 0px); }
         }
 
-        /* Estilo para el enlace del footer (Hover Effect) */
+        /* Enlace del footer */
         .footer-link-hover:hover {
             border-bottom: 2px solid #FF7A00 !important;
             text-shadow: 0 0 15px rgba(255, 122, 0, 0.8);
@@ -43,9 +61,9 @@
 </head>
 <body>
     <div id="root">
-        <div style="height:100vh; display:flex; justify-content:center; align-items:center; color:#60a5fa; font-family:sans-serif; flex-direction: column; gap: 20px;">
-            <div style="font-size: 40px;">🚀</div>
-            <div>Cargando Freelancer AI Suite...</div>
+        <div style="height:100vh; display:flex; justify-content:center; align-items:center; flex-direction: column; gap: 20px; background-color: #000;">
+            <img src="robot-leyendo-tablet.png" alt="Cargando..." style="width: 120px; animation: float 2s ease-in-out infinite;">
+            <div style="color: #FF7A00; font-family: sans-serif; font-weight: bold; letter-spacing: 1px;">Cargando AI Suite...</div>
         </div>
     </div>
 
@@ -56,7 +74,8 @@
         const Icon = ({ name, size = 20, className = "" }) => {
             const props = { xmlns: "http://www.w3.org/2000/svg", width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", className };
             const icons = {
-                Zap: <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />,
+                Zap: <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />, // Dejado por compatibilidad, pero usaremos Cohete visualmente
+                Rocket: <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.48-.56.93-1.23 1.35-2h4L15 21l3 3 1.5-1.5L16.5 19.5v-4l6-6-8.5-8.5-6 6h-4c-.77.42-1.44.87-2 1.35z" />, // Icono SVG de Cohete simple si se necesitara
                 Search: <><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></>,
                 Star: <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />,
                 X: <><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></>,
@@ -307,25 +326,28 @@
             }
         ];
 
-        // --- COMPONENTES UI ---
+        // --- COMPONENTES UI (Modificados a Naranja) ---
         const HowItWorks = () => (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-start gap-4">
-                    <div className="bg-blue-900/30 p-2 rounded-lg text-blue-400 mt-1"><Icon name="Search" size={20}/></div>
+                {/* Paso 1: Naranja */}
+                <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-start gap-4 hover:border-orange-500/30 transition-colors">
+                    <div className="bg-brand/20 p-2 rounded-lg text-brand mt-1"><Icon name="Search" size={20}/></div>
                     <div>
                         <h3 className="font-bold text-slate-200 text-sm mb-1">1. Encuentra tu Prompt</h3>
                         <p className="text-xs text-slate-400">Usa el buscador o filtra por categorías (Estrategia, Marketing, Legal...) para hallar lo que necesitas.</p>
                     </div>
                 </div>
-                <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-start gap-4">
-                    <div className="bg-purple-900/30 p-2 rounded-lg text-purple-400 mt-1"><Icon name="PenTool" size={20}/></div>
+                {/* Paso 2: Naranja */}
+                <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-start gap-4 hover:border-orange-500/30 transition-colors">
+                    <div className="bg-brand/20 p-2 rounded-lg text-brand mt-1"><Icon name="PenTool" size={20}/></div>
                     <div>
                         <h3 className="font-bold text-slate-200 text-sm mb-1">2. Personaliza</h3>
                         <p className="text-xs text-slate-400">El sistema detecta variables como [Mi Nicho]. Llena los campos para adaptar el prompt.</p>
                     </div>
                 </div>
-                <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-start gap-4">
-                    <div className="bg-green-900/30 p-2 rounded-lg text-green-400 mt-1"><Icon name="Zap" size={20}/></div>
+                {/* Paso 3: Naranja */}
+                <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-start gap-4 hover:border-orange-500/30 transition-colors">
+                    <div className="bg-brand/20 p-2 rounded-lg text-brand mt-1"><Icon name="Zap" size={20}/></div>
                     <div>
                         <h3 className="font-bold text-slate-200 text-sm mb-1">3. Copia y Usa</h3>
                         <p className="text-xs text-slate-400">Copia el resultado y pégalo directamente en ChatGPT, Claude o Gemini.</p>
@@ -334,14 +356,14 @@
             </div>
         );
 
-        // --- NUEVO FOOTER INTEGRADO (REACT + ESTILOS) ---
+        // --- NUEVO FOOTER (Estilo Black & Orange) ---
         const Footer = () => (
             <div style={{ width: "100%", overflowX: "hidden", fontFamily: "'Segoe UI', sans-serif" }}>
 
-              {/* MARGEN SUPERIOR: Espacio para que el robot no tape contenido */}
+              {/* MARGEN SUPERIOR */}
               <div style={{ backgroundColor: "#000000", position: "relative", marginTop: "130px" }}>
 
-                {/* 🤖 ROBOT FLOTANTE CON BURBUJA */}
+                {/* 🤖 ROBOT FLOTANTE */}
                 <div style={{
                     position: "absolute",
                     top: "-120px", 
@@ -352,7 +374,7 @@
                     animation: "float 4s ease-in-out infinite"
                 }}>
                     
-                    {/* 💬 BURBUJA DE CHAT (CTA) */}
+                    {/* 💬 BURBUJA DE CHAT */}
                     <div style={{
                         position: "absolute",
                         top: "-50px",
@@ -369,7 +391,6 @@
                         pointerEvents: "none"
                     }}>
                         ¡Potencia tu negocio! 🚀
-                        {/* Triángulo de la burbuja */}
                         <div style={{
                             position: "absolute",
                             bottom: "-6px",
@@ -385,7 +406,6 @@
                     </div>
 
                     {/* 🖼️ IMAGEN DEL ROBOT */}
-                    {/* Asegúrate de que el archivo robot-leyendo-tablet.png esté en la carpeta */}
                     <img src="robot-leyendo-tablet.png" alt="Asistente IA Jairo Amaya" 
                          style={{ width: "100%", height: "auto", display: "block", filter: "drop-shadow(0px 10px 20px rgba(255, 122, 0, 0.3))" }} /> 
                 </div>
@@ -396,12 +416,10 @@
                 {/* 📄 CONTENIDO DEL FOOTER */}
                 <footer style={{ color: "#ffffff", padding: "80px 20px 40px 20px", textAlign: "center", backgroundColor: "#000000" }}>
                   
-                  {/* Título Principal */}
                   <h3 style={{ margin: "0 0 15px 0", fontSize: "1.5rem", fontWeight: "700", letterSpacing: "0.5px" }}>
                     🚀 100 prompts estratégicos para freelancers
                   </h3>
 
-                  {/* Autor y Enlace */}
                   <p style={{ margin: "0 0 30px 0", fontSize: "1.1rem", color: "#D1D5DB" }}>
                     Herramienta de productividad para freelancers diseñada por <br />
                     <a href="https://jairoamaya.co" target="_blank" rel="noopener noreferrer" 
@@ -411,7 +429,6 @@
                     </a>
                   </p>
 
-                  {/* Caja "Bonus Track" */}
                   <div style={{
                       background: "linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%)", 
                       border: "1px solid #333", 
@@ -427,10 +444,8 @@
                     </p>
                   </div>
 
-                  {/* Separador Sutil */}
                   <hr style={{ border: 0, borderTop: "1px solid #333", margin: "0 auto 20px auto", maxWidth: "150px" }} />
                   
-                  {/* Copyright */}
                   <p style={{ margin: 0, fontSize: "0.8rem", color: "#525252" }}>
                     Todos los derechos reservados © 2025
                   </p>
@@ -440,7 +455,7 @@
             </div>
         );
 
-        // --- APP PRINCIPAL ---
+        // --- APP PRINCIPAL (Lógica intacta, Diseño Naranja) ---
         const App = () => {
             const [searchTerm, setSearchTerm] = useState('');
             const [selectedCategory, setSelectedCategory] = useState('all');
@@ -503,11 +518,13 @@
 
             return (
                 <div className="min-h-screen">
+                    {/* NAVBAR: Modificado a Naranja */}
                     <nav className="sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800 px-4 py-3 shadow-xl">
                         <div className="max-w-7xl mx-auto flex items-center justify-between">
                             <div className="flex items-center gap-3">
-                                <div className="bg-gradient-to-br from-blue-600 to-indigo-600 p-2 rounded-xl shadow-lg shadow-blue-500/20"><Icon name="Zap" className="text-white" size={24} /></div>
-                                <div><h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">Freelancer AI Suite</h1><p className="text-xs text-slate-400 font-medium tracking-wide">100 PROMPTS</p></div>
+                                {/* Logo: Gradiente Naranja y Cohete 🚀 */}
+                                <div className="bg-gradient-to-br from-brand to-red-600 p-2 rounded-xl shadow-lg shadow-orange-500/20 text-white font-bold text-xl leading-none">🚀</div>
+                                <div><h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-brand-light">Freelancer AI Suite</h1><p className="text-xs text-slate-400 font-medium tracking-wide">100 PROMPTS</p></div>
                             </div>
                             <button onClick={() => setSelectedCategory('favorites')} className={`flex items-center gap-2 py-1.5 px-3 rounded-full border transition-all ${selectedCategory === 'favorites' ? 'bg-yellow-500/10 border-yellow-500 text-yellow-400' : 'bg-slate-800 border-slate-700 hover:border-slate-500'}`}>
                                 <Icon name="Star" size={14} className={selectedCategory === 'favorites' ? 'text-yellow-400' : 'text-slate-400'} fill="currentColor" />
@@ -518,13 +535,15 @@
 
                     <main className="max-w-7xl mx-auto px-4 py-8">
                         <HowItWorks />
+                        
+                        {/* BUSCADOR: Focus Ring Naranja */}
                         <div className="flex flex-col md:flex-row gap-4 mb-8">
                             <div className="relative flex-1 group">
-                                <span className="absolute left-3 top-3.5 text-slate-500"><Icon name="Search" size={20} /></span>
-                                <input type="text" placeholder="Buscar prompt (ej: 'precios', 'cliente ideal')..." value={searchTerm} onChange={e => setSearchTerm(e.target.value)} className="w-full bg-slate-800 border border-slate-700 rounded-xl py-3 pl-10 pr-4 text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm" />
+                                <span className="absolute left-3 top-3.5 text-slate-500 group-focus-within:text-brand transition-colors"><Icon name="Search" size={20} /></span>
+                                <input type="text" placeholder="Buscar prompt (ej: 'precios', 'cliente ideal')..." value={searchTerm} onChange={e => setSearchTerm(e.target.value)} className="w-full bg-slate-800 border border-slate-700 rounded-xl py-3 pl-10 pr-4 text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand transition-all shadow-sm" />
                             </div>
                             <div className="md:w-72 relative">
-                                <select value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)} className="w-full bg-slate-800 border border-slate-700 rounded-xl py-3 px-4 text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer appearance-none">
+                                <select value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)} className="w-full bg-slate-800 border border-slate-700 rounded-xl py-3 px-4 text-slate-200 focus:outline-none focus:ring-2 focus:ring-brand cursor-pointer appearance-none">
                                     <option value="all">Todas las Categorías</option>
                                     <option value="favorites">⭐ Mis Favoritos</option>
                                     {promptsData.map(c => <option key={c.title} value={c.title}>{c.title}</option>)}
@@ -533,9 +552,10 @@
                             </div>
                         </div>
 
+                        {/* TARJETAS: Hover Orange */}
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {visiblePrompts.map(p => (
-                                <div key={p.id} onClick={() => setSelectedPrompt(p)} className="group bg-slate-900 rounded-2xl border border-slate-800 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-900/10 transition-all duration-300 cursor-pointer flex flex-col relative overflow-hidden h-full">
+                                <div key={p.id} onClick={() => setSelectedPrompt(p)} className="group bg-slate-900 rounded-2xl border border-slate-800 hover:border-brand/50 hover:shadow-xl hover:shadow-brand/10 transition-all duration-300 cursor-pointer flex flex-col relative overflow-hidden h-full">
                                     <div className={`h-1.5 w-full ${p.categoryColor}`} />
                                     <div className="p-5 flex flex-col flex-1">
                                         <div className="flex justify-between items-start mb-3">
@@ -545,11 +565,13 @@
                                             </div>
                                             <button onClick={(e) => { e.stopPropagation(); toggleFav(p.id); }} className="text-slate-600 hover:text-yellow-400 p-1 transition-colors z-10"><Icon name="Star" size={18} fill={favorites.includes(p.id) ? "currentColor" : "none"} /></button>
                                         </div>
-                                        <h3 className="font-bold text-lg text-slate-100 mb-2 leading-tight group-hover:text-blue-400 transition-colors">{p.title}</h3>
+                                        {/* Título: Hover Orange */}
+                                        <h3 className="font-bold text-lg text-slate-100 mb-2 leading-tight group-hover:text-brand transition-colors">{p.title}</h3>
                                         <p className="text-sm text-slate-400 line-clamp-3 mb-4 flex-1">{p.prompt}</p>
                                         <div className="flex items-center justify-between pt-4 border-t border-slate-800 mt-auto">
                                             <span className="text-xs font-medium text-slate-500 bg-slate-800/50 px-2 py-1 rounded border border-slate-800">⏱ {p.tiempoEstimado}</span>
-                                            <div className="flex items-center gap-1 text-sm font-semibold text-blue-500 opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">Usar <Icon name="ArrowRight" size={16} /></div>
+                                            {/* Link Usar: Orange */}
+                                            <div className="flex items-center gap-1 text-sm font-semibold text-brand opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">Usar <Icon name="ArrowRight" size={16} /></div>
                                         </div>
                                     </div>
                                 </div>
@@ -558,7 +580,8 @@
 
                         {visibleCount < filteredPrompts.length && (
                             <div className="flex justify-center mt-12">
-                                <button onClick={() => setVisibleCount(prev => prev + 9)} className="bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 px-8 rounded-xl border border-slate-700 transition-all shadow-lg hover:shadow-blue-500/20 active:scale-95">Cargar más prompts ({filteredPrompts.length - visibleCount} restantes)</button>
+                                {/* Botón Cargar Más: Naranja */}
+                                <button onClick={() => setVisibleCount(prev => prev + 9)} className="bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 px-8 rounded-xl border border-slate-700 transition-all shadow-lg hover:shadow-brand/20 active:scale-95">Cargar más prompts ({filteredPrompts.length - visibleCount} restantes)</button>
                             </div>
                         )}
 
@@ -567,6 +590,7 @@
 
                     <Footer />
 
+                    {/* MODAL DETALLE: Adaptado a Naranja */}
                     {selectedPrompt && (
                         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-animate">
                             <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setSelectedPrompt(null)} />
@@ -584,13 +608,14 @@
                                 <div className="flex flex-col lg:flex-row flex-1 overflow-hidden">
                                     <div className="w-full lg:w-1/3 bg-slate-800/30 border-r border-slate-800 p-6 overflow-y-auto">
                                         <div className="mb-6 p-4 bg-slate-800/50 rounded-xl border border-slate-700/50"><h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-2"><Icon name="Target" size={14} /> Contexto</h4><p className="text-sm text-slate-300">{selectedPrompt.cuandoUsar}</p></div>
-                                        <h4 className="text-xs font-bold text-blue-400 uppercase tracking-wider mb-4 flex items-center gap-2"><Icon name="PenTool" size={14} /> Personalizar</h4>
-                                        <div className="space-y-4">{Object.keys(promptVariables).length > 0 ? Object.keys(promptVariables).map(key => (<div key={key}><label className="text-xs font-semibold text-slate-400 ml-1 mb-1 block">{key}</label><input className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all placeholder-slate-600" placeholder={`Escribe ${key}...`} value={promptVariables[key]} onChange={e => setPromptVariables({...promptVariables, [key]: e.target.value})} /></div>)) : (<div className="text-center p-4 border border-dashed border-slate-700 rounded-xl text-slate-500 text-sm">Este prompt no requiere variables.</div>)}</div>
+                                        <h4 className="text-xs font-bold text-brand uppercase tracking-wider mb-4 flex items-center gap-2"><Icon name="PenTool" size={14} /> Personalizar</h4>
+                                        <div className="space-y-4">{Object.keys(promptVariables).length > 0 ? Object.keys(promptVariables).map(key => (<div key={key}><label className="text-xs font-semibold text-slate-400 ml-1 mb-1 block">{key}</label><input className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all placeholder-slate-600" placeholder={`Escribe ${key}...`} value={promptVariables[key]} onChange={e => setPromptVariables({...promptVariables, [key]: e.target.value})} /></div>)) : (<div className="text-center p-4 border border-dashed border-slate-700 rounded-xl text-slate-500 text-sm">Este prompt no requiere variables.</div>)}</div>
                                     </div>
                                     <div className="w-full lg:w-2/3 p-6 flex flex-col bg-slate-900 overflow-hidden">
                                         <div className="flex-1 relative mb-4 overflow-hidden"><textarea readOnly value={finalPrompt} className="w-full h-full bg-slate-950 border border-slate-800 rounded-xl p-6 text-slate-300 font-mono text-sm leading-relaxed resize-none focus:outline-none focus:border-slate-700 shadow-inner" /></div>
                                         <div className="flex flex-col gap-3 shrink-0">
-                                            <button onClick={copyText} className={`w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-bold text-white shadow-lg transition-all transform active:scale-95 ${copiedId === selectedPrompt.id ? 'bg-green-500' : 'bg-blue-600 hover:bg-blue-500'}`}><Icon name={copiedId === selectedPrompt.id ? "Check" : "Copy"} size={20} />{copiedId === selectedPrompt.id ? "¡Copiado!" : "Copiar Prompt"}</button>
+                                            {/* Botón Copiar: Naranja */}
+                                            <button onClick={copyText} className={`w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-bold text-white shadow-lg transition-all transform active:scale-95 ${copiedId === selectedPrompt.id ? 'bg-green-500' : 'bg-[#FF7A00] hover:bg-orange-600'}`}><Icon name={copiedId === selectedPrompt.id ? "Check" : "Copy"} size={20} />{copiedId === selectedPrompt.id ? "¡Copiado!" : "Copiar Prompt"}</button>
                                             <div className="grid grid-cols-3 gap-3 pt-2"><AIButton name="ChatGPT" url="https://chat.openai.com" color="bg-emerald-600" /><AIButton name="Claude" url="https://claude.ai" color="bg-orange-600" /><AIButton name="Gemini" url="https://gemini.google.com" color="bg-blue-600" /></div>
                                         </div>
                                     </div>
